@@ -17,7 +17,7 @@ public class Main {
 
         elements = domEngine.getLiFromListElement(elements.get(0));
         for(Element element : elements){
-            System.out.println(element);
+            System.out.println(element.text());
         }
 
         System.out.println("Total elements ::" + elements.size());
