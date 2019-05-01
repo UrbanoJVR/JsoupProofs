@@ -2,6 +2,7 @@ package com.urbanojvr.jsoupproofs.crawler;
 
 import com.urbanojvr.jsoupproofs.dataextractor.SintaxEngine;
 import com.urbanojvr.jsoupproofs.docloader.DocumentLoader;
+import com.urbanojvr.jsoupproofs.filemanager.JsonSerializer;
 import org.jsoup.HttpStatusException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -48,7 +49,8 @@ public class CrawlerEngine {
                     print(" * a: <%s>  (%s)", actualUrl, trim(link.text(), 35));
                     linksList.add(actualUrl);
                     if((linksList.size() % 100) == 0){
-
+                        JsonSerializer serializer = new JsonSerializer(linksList);
+                        serializer.writeFile("links.url");
                     }
                     crawl(actualUrl);
                 }
