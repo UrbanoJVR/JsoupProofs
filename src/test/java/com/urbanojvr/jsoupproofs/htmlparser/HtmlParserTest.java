@@ -23,7 +23,6 @@ public class HtmlParserTest {
 
         assertThat(doc.title(), equalTo(title));
         assertThat(doc.body().text(), equalTo(body));
-        System.out.println(doc.body().text());
     }
 
     @Test

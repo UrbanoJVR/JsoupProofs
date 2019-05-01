@@ -16,7 +16,7 @@ public class DocumentLoader {
     }
 
     public DocumentLoader(String url) throws IOException {
-        this.doc = Jsoup.connect(url).get();
+        this.doc = Jsoup.connect(url).ignoreContentType(true).get();
     }
 
     public DocumentLoader(File fileToLoad, String charset) throws IOException {
