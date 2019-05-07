@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 
-public class CrawlerEngine {
+public class CrawlerEngine implements Crawler {
 
     private String baseURI;
     private String rootURI;
@@ -33,10 +33,12 @@ public class CrawlerEngine {
         doc = new DocumentLoader(rootURI).getDoc();
     }
 
+    @Override
     public void crawl() throws IOException {
         crawl(rootURI);
     }
 
+    @Override
     public void crawl(String url) throws IOException {
         try{
             SintaxEngine sintaxEngine = new SintaxEngine(url);
@@ -52,6 +54,7 @@ public class CrawlerEngine {
                         JsonSerializer serializer = new JsonSerializer(linksList);
                         serializer.writeFile("links.json");
                     }
+                    Thread.sleep(5 * 1000);
                     crawl(actualUrl);
                 }
             }
@@ -68,6 +71,7 @@ public class CrawlerEngine {
         }
     }
 
+    @Override
     public boolean linksEmpty(){
         return linksList.isEmpty();
     }
@@ -83,6 +87,7 @@ public class CrawlerEngine {
             return s;
     }
 
+    @Override
     public ArrayList<String> getLinksList(){
         return linksList;
     }
