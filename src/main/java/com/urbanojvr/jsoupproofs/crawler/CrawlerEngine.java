@@ -50,7 +50,7 @@ public class CrawlerEngine {
                     linksList.add(actualUrl);
                     if((linksList.size() % 100) == 0){
                         JsonSerializer serializer = new JsonSerializer(linksList);
-                        serializer.writeFile("links.url");
+                        serializer.writeFile("links.json");
                     }
                     crawl(actualUrl);
                 }
@@ -63,8 +63,6 @@ public class CrawlerEngine {
         } catch (Exception error){
             System.out.println(error.getMessage());
         } catch (StackOverflowError stackOverflowError){
-            System.err.println(stackOverflowError.getMessage());
-            System.err.println(stackOverflowError.getLocalizedMessage());
             System.err.println(stackOverflowError.toString());
             System.err.println("[" + linksList.size() + "]");
         }
