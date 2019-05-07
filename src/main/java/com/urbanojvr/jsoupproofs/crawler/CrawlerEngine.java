@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 public class CrawlerEngine implements Crawler {
 
-    private String baseURI;
+    protected String baseURI;
     private String rootURI;
-    private ArrayList<String> linksList;
+    ArrayList<String> linksList;
     private Document doc;
 
     public CrawlerEngine(String baseURI) throws IOException {
@@ -38,9 +38,9 @@ public class CrawlerEngine implements Crawler {
         crawl(rootURI);
     }
 
-    @Override
     public void crawl(String url) throws IOException {
         try{
+            System.out.println("CrawlerEngine");
             SintaxEngine sintaxEngine = new SintaxEngine(url);
             Elements links = sintaxEngine.getAWithRef();
 
@@ -54,7 +54,6 @@ public class CrawlerEngine implements Crawler {
                         JsonSerializer serializer = new JsonSerializer(linksList);
                         serializer.writeFile("links.json");
                     }
-                    Thread.sleep(5 * 1000);
                     crawl(actualUrl);
                 }
             }
@@ -76,11 +75,11 @@ public class CrawlerEngine implements Crawler {
         return linksList.isEmpty();
     }
 
-    private static void print(String msg, Object... args) {
+    protected void print(String msg, Object... args) {
         System.out.println(String.format(msg, args));
     }
 
-    private static String trim(String s, int width) {
+    protected String trim(String s, int width) {
         if (s.length() > width)
             return s.substring(0, width-1) + ".";
         else
