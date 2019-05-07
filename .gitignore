@@ -3,3 +3,5 @@ JsoupProofs.iml
 target/
 links.url
 links.json
+SlicedCrawlerEngine.json
+CrawlerEngine.json
