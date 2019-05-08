@@ -12,19 +12,13 @@ import java.util.ArrayList;
 
 public class JsonSerializer {
 
-    private Object objectToSerialize;
     private Gson gson;
-
-    public JsonSerializer(Object objectToSerialize){
-        this.objectToSerialize = objectToSerialize;
-        gson = new Gson();
-    }
 
     public JsonSerializer(){
         gson = new Gson();
     }
 
-    public void writeFile(String filename) throws IOException {
+    public void writeFile(Object objectToSerialize, String filename) throws IOException {
         try(FileWriter fileWriter = new FileWriter(filename)){
             gson.toJson(objectToSerialize, fileWriter);
             System.out.println("SERIALIZED TO :::::::::: " + filename);

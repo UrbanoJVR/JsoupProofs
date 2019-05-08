@@ -34,8 +34,8 @@ public class SlicedCrawlerEngine extends CrawlerEngine{
                     super.print(" * a: <%s>  (%s)", actualUrl, super.trim(link.text(), 35));
                     linksList.add(actualUrl);
                     if((linksList.size() % 100) == 0){
-                        JsonSerializer serializer = new JsonSerializer(linksList);
-                        serializer.writeFile("links.json");
+                        JsonSerializer serializer = new JsonSerializer();
+                        serializer.writeFile(linksList,super.getJsonFileName());
                     }
                     Thread.sleep(randomTime());
                     crawl(actualUrl);
