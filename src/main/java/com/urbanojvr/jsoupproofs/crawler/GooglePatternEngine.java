@@ -52,7 +52,6 @@ public class GooglePatternEngine implements Crawler{
         }
     }
 
-    @Override
     public ArrayList<String> getLinksList() {
         return linksList;
     }
@@ -60,5 +59,9 @@ public class GooglePatternEngine implements Crawler{
     private void saveLinksList() throws IOException {
         JsonSerializer serializer = new JsonSerializer();
         serializer.writeFile(linksList, jsonFileName);
+    }
+
+    public void setJsonFileName(String fileName){
+        jsonFileName = fileName;
     }
 }

@@ -3,6 +3,7 @@ package com.urbanojvr.jsoupproofs.filemanager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import com.urbanojvr.jsoupproofs.domain.Product;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -35,4 +36,10 @@ public class JsonSerializer {
         return linksList;
     }
 
+    public ArrayList<Product> readJsonProducts(String filename) throws FileNotFoundException {
+        JsonReader reader = new JsonReader(new FileReader(filename));
+        TypeToken<ArrayList<Product>> token = new TypeToken<ArrayList<Product>>() {};
+        ArrayList<Product> products = gson.fromJson(reader, token.getType());
+        return products;
+    }
 }

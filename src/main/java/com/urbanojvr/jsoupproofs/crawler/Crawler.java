@@ -6,6 +6,4 @@ import java.util.ArrayList;
 public interface Crawler {
 
     void crawl() throws IOException;
-
-    ArrayList<String> getLinksList();
 }

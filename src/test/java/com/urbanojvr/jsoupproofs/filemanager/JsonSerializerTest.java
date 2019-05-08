@@ -1,5 +1,6 @@
 package com.urbanojvr.jsoupproofs.filemanager;
 
+import com.urbanojvr.jsoupproofs.domain.Product;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -30,5 +31,13 @@ public class JsonSerializerTest {
             System.out.println(link);
         }
         System.out.println("List size :: " + returned.size());
+    }
+
+    @Test
+    public void readJsonToProducts() throws FileNotFoundException {
+        ArrayList<Product> returned = sut.readJsonProducts("src/main/resources/links_ecom.json");
+        for(Product p : returned){
+            System.out.println(p.toString());
+        }
     }
 }
