@@ -69,7 +69,7 @@ public class CrawlerEngine implements Crawler {
         } catch (Exception error){
             System.out.println(error.getMessage());
         } catch (StackOverflowError stackOverflowError){
-            System.err.println(stackOverflowError.toString());
+            // System.err.println(stackOverflowError.toString());
             System.err.println("[" + linksList.size() + "]");
         }
     }

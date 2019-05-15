@@ -26,7 +26,7 @@ public class JsonSerializerTest {
     @Ignore
     @Test
     public void readJsonFile() throws FileNotFoundException {
-        ArrayList<String> returned = sut.readJsonFile("links.json");
+        ArrayList<String> returned = sut.readJsonFile("src/main/resources/links.json");
         for(String link : returned){
             System.out.println(link);
         }

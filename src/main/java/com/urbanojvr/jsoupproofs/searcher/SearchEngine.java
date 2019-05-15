@@ -4,11 +4,10 @@ import com.urbanojvr.jsoupproofs.docloader.DocumentLoader;
 import com.urbanojvr.jsoupproofs.filemanager.JsonSerializer;
 import org.jsoup.nodes.Element;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SearchEngine {
+public class SearchEngine implements Searcher {
 
     private JsonSerializer serializer;
     private ArrayList<String> matches;
@@ -18,7 +17,8 @@ public class SearchEngine {
         matches = new ArrayList<>();
     }
 
-    public ArrayList<String> search(String fileName, String target) throws IOException {
+    @Override
+    public ArrayList<String> searchText(String fileName, String target) throws IOException {
         ArrayList<String> links = serializer.readJsonFile(fileName);
         for(String link : links){
             Element body = new DocumentLoader(link).getBody();

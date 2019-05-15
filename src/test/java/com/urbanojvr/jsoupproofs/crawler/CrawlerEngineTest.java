@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class CrawlerEngineTest {
 
-    private static final String URL = "http://books.toscrape.com/";
+    private static final String URL = "https://www.elmundo.es/";
     private CrawlerEngine sut;
 
     @Before
