@@ -65,6 +65,15 @@ public class EcommercePatternEngine implements Crawler {
         }
     }
 
+    @Override
+    public ArrayList<String> getScrapedLinks() {
+        ArrayList<String> scrapedLinks = new ArrayList<>();
+        for(Product p : products){
+            scrapedLinks.add(p.getUrl());
+        }
+        return scrapedLinks;
+    }
+
     public Product createProduct(Element container) {
         String title = getTitleFromContainer(container);
         String price = getPriceFromContainer(container);

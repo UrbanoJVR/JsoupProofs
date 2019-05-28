@@ -14,18 +14,18 @@ public class GooglePatternEngine implements Crawler{
     private static final int FIRST_PAGE_NUMBER = 1;
     private static final String DEAFULT_JSON_FILE_NAME = "src/main/resources/links_google.json";
 
-    private ArrayList<String> linksList;
+    private ArrayList<String> scrapedLinks;
     private String actualPage;
-    private String tag;
+    private String resultTag;
     private String nextPageTag;
     private int pageLimit;
     private String jsonFileName;
 
-    public GooglePatternEngine(String parentUrl, String tag, String nextPageTag, int pageLimit){
+    public GooglePatternEngine(String parentUrl, String resultTag, String nextPageTag, int pageLimit){
         this.actualPage = parentUrl;
-        this.tag = tag;
+        this.resultTag = resultTag;
         this.nextPageTag = nextPageTag;
-        this.linksList = new ArrayList<>();
+        this.scrapedLinks = new ArrayList<>();
         this.pageLimit = pageLimit;
         jsonFileName = DEAFULT_JSON_FILE_NAME;
     }
@@ -39,9 +39,9 @@ public class GooglePatternEngine implements Crawler{
     public void parsePage(String pageUrl, int pageNum) throws IOException {
         System.out.println("PAGE :: " + pageNum);
         Document document = new DocumentLoader(pageUrl).getDoc();
-        Elements elements = document.select(tag);
+        Elements elements = document.select(resultTag);
         for(Element element : elements){
-            linksList.add(element.text());
+            scrapedLinks.add(element.text());
             System.out.println(element.text());
         }
         if(pageNum < pageLimit && !document.select(nextPageTag).attr("abs:href").isEmpty()){
@@ -52,13 +52,14 @@ public class GooglePatternEngine implements Crawler{
         }
     }
 
-    public ArrayList<String> getLinksList() {
-        return linksList;
+    @Override
+    public ArrayList<String> getScrapedLinks() {
+        return scrapedLinks;
     }
 
     private void saveLinksList() throws IOException {
         JsonSerializer serializer = new JsonSerializer();
-        serializer.writeFile(linksList, jsonFileName);
+        serializer.writeFile(scrapedLinks, jsonFileName);
     }
 
     public void setJsonFileName(String fileName){

@@ -1,5 +1,6 @@
 package com.urbanojvr.jsoupproofs.searcher;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ public class SearcherTest {
 
     private Searcher sut;
 
+    @Ignore
     @Test
     public void search_text_in_list() throws IOException {
         String fileName = "filename";
@@ -24,6 +26,7 @@ public class SearcherTest {
         sut = new ProductSearcher();
 
         ArrayList<String> results = sut.searchText(filename, "united states");
+
 
         for(String link : results){
             System.out.println(link);

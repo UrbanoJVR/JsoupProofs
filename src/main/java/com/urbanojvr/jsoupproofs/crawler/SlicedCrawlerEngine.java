@@ -30,12 +30,12 @@ public class SlicedCrawlerEngine extends CrawlerEngine{
             for(Element link : links){
                 String actualUrl = link.attr("abs:href");
 
-                if(!super.linksList.contains(actualUrl) & actualUrl.startsWith(super.baseURI)){
+                if(!super.scrapedLinks.contains(actualUrl) & actualUrl.startsWith(super.baseURI)){
                     super.print(" * a: <%s>  (%s)", actualUrl, super.trim(link.text(), 35));
-                    linksList.add(actualUrl);
-                    if((linksList.size() % 100) == 0){
+                    scrapedLinks.add(actualUrl);
+                    if((scrapedLinks.size() % 100) == 0){
                         JsonSerializer serializer = new JsonSerializer();
-                        serializer.writeFile(linksList,super.getJsonFileName());
+                        serializer.writeFile(scrapedLinks,super.getJsonFileName());
                     }
                     Thread.sleep(randomTime());
                     crawl(actualUrl);
@@ -43,14 +43,14 @@ public class SlicedCrawlerEngine extends CrawlerEngine{
             }
         } catch (HttpStatusException statusExcp){
             System.err.println(statusExcp.getMessage() + ". STATUS :: " + statusExcp.getStatusCode());
-            System.err.println(statusExcp.getUrl() + " [" + linksList.size() + "]");
+            System.err.println(statusExcp.getUrl() + " [" + scrapedLinks.size() + "]");
         } catch (SocketTimeoutException timeOutExcp){
             System.out.println(timeOutExcp.getMessage());
         } catch (Exception error){
             System.out.println(error.getMessage());
         } catch (StackOverflowError stackOverflowError){
             System.err.println(stackOverflowError.toString());
-            System.err.println("[" + linksList.size() + "]");
+            System.err.println("[" + scrapedLinks.size() + "]");
         }
     }
 

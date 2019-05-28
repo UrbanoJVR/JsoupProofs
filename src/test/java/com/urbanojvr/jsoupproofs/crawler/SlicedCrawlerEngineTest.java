@@ -7,8 +7,6 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.Date;
 
-import static org.junit.Assert.*;
-
 public class SlicedCrawlerEngineTest {
 
     private static final String URL = "https://www.elmundo.es";
@@ -27,7 +25,7 @@ public class SlicedCrawlerEngineTest {
         Date finish = new Date();
         long mils = finish.getTime() - start.getTime();
         long seconds = mils / 1000;
-        System.out.println("Total URLs crawled at " + URL + " :: " + sut.getLinksList().size());
+        System.out.println("Total URLs crawled at " + URL + " :: " + sut.getScrapedLinks().size());
         System.out.println("Time :: " + seconds);
     }
 }
